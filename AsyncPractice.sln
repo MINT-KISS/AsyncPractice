@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCounter", "src\SpaceCounter\WhitespaceCounter.csproj", "{EAA64449-3B15-4EFD-9933-485C58B7289E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCounter", "src\WhitespaceCounter\WhitespaceCounter.csproj", "{08A2697C-6724-4256-B884-ED88AD1DF690}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,26 +17,23 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|x64.Build.0 = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Debug|x86.Build.0 = Debug|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|x64.ActiveCfg = Release|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|x64.Build.0 = Release|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|x86.ActiveCfg = Release|Any CPU
-		{EAA64449-3B15-4EFD-9933-485C58B7289E}.Release|x86.Build.0 = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|x64.Build.0 = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Debug|x86.Build.0 = Debug|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|x64.ActiveCfg = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|x64.Build.0 = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|x86.ActiveCfg = Release|Any CPU
+		{08A2697C-6724-4256-B884-ED88AD1DF690}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EAA64449-3B15-4EFD-9933-485C58B7289E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2AA7743F-BCE6-4491-BBF7-059C9B8EC305}
+		{08A2697C-6724-4256-B884-ED88AD1DF690} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
