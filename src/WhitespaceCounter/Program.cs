@@ -39,4 +39,5 @@ foreach (var task in tasks)
     }
 }
 
-Console.WriteLine("Processing completed.\n");
+Console.WriteLine("Processing completed. Press any key to exit...\n");
+Console.ReadLine();
