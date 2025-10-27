@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceCounter", "src\SpaceCounter\SpaceCounter.csproj", "{EAA64449-3B15-4EFD-9933-485C58B7289E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCounter", "src\SpaceCounter\WhitespaceCounter.csproj", "{EAA64449-3B15-4EFD-9933-485C58B7289E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EAA64449-3B15-4EFD-9933-485C58B7289E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2AA7743F-BCE6-4491-BBF7-059C9B8EC305}
 	EndGlobalSection
 EndGlobal
