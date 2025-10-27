@@ -1,0 +1,6 @@
+@AsyncDownloader_HostAddress = http://localhost:5192
+
+GET {{AsyncDownloader_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
