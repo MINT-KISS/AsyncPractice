@@ -10,7 +10,8 @@ while (answer != "Y" && answer != "N")
 
 if (answer == "N")
 {
-    Console.WriteLine("Operation canceled.");
+    Console.WriteLine("Operation canceled. Press any key to exit...\n");
+    Console.ReadLine();
     return;
 }
 
@@ -19,7 +20,9 @@ var folderPath = Path.Combine(AppContext.BaseDirectory, "Data");
 var filePaths = Directory.GetFiles(folderPath, "*.txt");
 if (filePaths.Length == 0)
 {
-    Console.Error.WriteLine($".txt files not found in folder: \"{folderPath}\"");
+    Console.Error.WriteLine($".txt files not found in folder: \"{folderPath}\".");
+    Console.WriteLine("Press any key to exit...");
+    Console.ReadLine();
     return;
 }
 
