@@ -1,7 +1,5 @@
 ﻿using AsyncDownloader.Application.Abstractions;
-using AsyncDownloader.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 
 namespace AsyncDownloader.Api.Controllers
 {
@@ -10,11 +8,14 @@ namespace AsyncDownloader.Api.Controllers
     public class PostController(IPostService postService) : ControllerBase
     {
         [HttpGet]
-        public async Task<IEnumerable<Post?>> Get(CancellationToken cancellationToken = default) =>
-            await postService.GetPostsAsync(cancellationToken);
+        public async Task<ActionResult> Get(CancellationToken cancellationToken = default)
+        {
+            var posts = await postService.GetPostsAsync(cancellationToken);
+            return posts != null && posts.Any() ? Ok(posts) : NotFound();
+        }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Post>> Get(int id, CancellationToken cancellationToken)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> Get(int id, CancellationToken cancellationToken)
         {
             var post = await postService.GetPostByIdAsync(id, cancellationToken);
             return post != null ? Ok(post) : NotFound();
