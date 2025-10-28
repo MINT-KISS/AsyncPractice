@@ -1,9 +1,11 @@
+using AsyncDownloader.Cli;
 using AsyncDownloader.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddBusinessLogic();
+builder.Services.AddTransient<ConsoleApp>();
 builder.Services.AddHttpClient("ExternalApiClient",
                                 c => c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
 builder.Services.AddOpenApi();
@@ -18,4 +20,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.MapControllers();
 
-app.Run();
+
+await app.StartAsync();
+
+using var scope = app.Services.CreateScope();
+var console = scope.ServiceProvider.GetRequiredService<ConsoleApp>();
+await console.RunAsync(app.Lifetime.ApplicationStopping);
+
+await app.StopAsync();

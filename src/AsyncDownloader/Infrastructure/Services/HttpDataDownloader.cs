@@ -6,9 +6,9 @@ namespace AsyncDownloader.Infrastructure.Services
     {
         private readonly HttpClient _httpClient = httpClientFactory.CreateClient("ExternalApiClient");
 
-        public async Task<string> DownloadDataAsync(string endpoint, CancellationToken cancellationToken = default)
+        public async Task<string> DownloadDataAsync(string requestUri, CancellationToken cancellationToken = default)
         {
-            var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+            var response = await _httpClient.GetAsync(requestUri, cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync(cancellationToken);
         }
