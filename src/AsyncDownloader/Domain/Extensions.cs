@@ -10,6 +10,9 @@ namespace AsyncDownloader.Domain
         {
             serviceCollection.AddScoped<IPostService, PostService>();
             serviceCollection.AddScoped<IHttpDataDownloader, HttpDataDownloader>();
+            serviceCollection.AddLogging(logging => logging.AddConsole());
+            serviceCollection.AddHttpClient("ExternalApiClient",
+                                c => c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
             return serviceCollection;
         }
     }

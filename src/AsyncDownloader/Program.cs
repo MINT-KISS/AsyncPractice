@@ -6,8 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddBusinessLogic();
 builder.Services.AddTransient<ConsoleApp>();
-builder.Services.AddHttpClient("ExternalApiClient",
-                                c => c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
 builder.Services.AddOpenApi();
 
 var app = builder.Build();

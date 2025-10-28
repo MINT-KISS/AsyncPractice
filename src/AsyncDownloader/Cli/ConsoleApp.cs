@@ -21,7 +21,7 @@ namespace AsyncDownloader.Cli
                     Console.WriteLine();
                     foreach (var p in posts)
                     {
-                        PrintPost(p);
+                        if (p is not null) PrintPost(p);
                     }
                     continue;
                 }
