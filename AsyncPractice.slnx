@@ -4,7 +4,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Folder Name="/src/">
-    <Project Path="src/WhitespaceCounter/WhitespaceCounter.csproj" />
-  </Folder>
+  <Project Path="src/AsyncDownloader/AsyncDownloader.csproj" Id="4b388227-2bbd-471a-bacc-9c731c7595b7" />
+  <Project Path="src/WhitespaceCounter/WhitespaceCounter.csproj" />
 </Solution>
