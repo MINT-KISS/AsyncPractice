@@ -9,16 +9,39 @@ namespace AsyncDownloader.Infrastructure.Services
 
         public async Task<string> DownloadDataAsync(string requestUri, CancellationToken cancellationToken = default)
         {
+            const int maxAttempts = 3;
+            var baseDelay = TimeSpan.FromMilliseconds(200);
+
             try
             {
-                var response = await _httpClient.GetAsync(requestUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-
-                if (!response.IsSuccessStatusCode)
+                for (int attempt = 1; attempt <= maxAttempts; attempt++)
                 {
-                    throw new HttpRequestException($"Request failed with status {response.StatusCode}", null, response.StatusCode);
+                    try
+                    {
+                        using var response = await _httpClient.GetAsync(
+                            requestUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
+                        if (!response.IsSuccessStatusCode)
+                        {
+                            throw new HttpRequestException($"Request failed with status {response.StatusCode}",
+                                                           null, response.StatusCode);
+                        }
+
+                        return await response.Content.ReadAsStringAsync(cancellationToken);
+                    }
+                    catch (HttpRequestException ex) when (attempt < maxAttempts)
+                    {
+                        logger.LogDebug(ex, "Retry {Attempt}/{Max} for {Uri}", attempt, maxAttempts, requestUri);
+                        await Task.Delay(TimeSpan.FromMilliseconds(baseDelay.TotalMilliseconds * attempt), cancellationToken);
+                    }
+                    catch (TaskCanceledException ex) when (!cancellationToken.IsCancellationRequested && attempt < maxAttempts)
+                    {
+                        logger.LogDebug(ex, "Retry {Attempt}/{Max} (timeout) for {Uri}", attempt, maxAttempts, requestUri);
+                        await Task.Delay(TimeSpan.FromMilliseconds(baseDelay.TotalMilliseconds * attempt), cancellationToken);
+                    }
                 }
 
-                return await response.Content.ReadAsStringAsync(cancellationToken);
+                throw new HttpRequestException("Request failed after retries.");
             }
             catch (HttpRequestException ex)
             {
