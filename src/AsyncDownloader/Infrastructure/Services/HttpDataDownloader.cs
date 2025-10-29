@@ -15,7 +15,6 @@ namespace AsyncDownloader.Infrastructure.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    logger.LogWarning("HTTP {StatusCode} for {Uri}", response.StatusCode, requestUri);
                     throw new HttpRequestException($"Request failed with status {response.StatusCode}", null, response.StatusCode);
                 }
 
@@ -23,18 +22,13 @@ namespace AsyncDownloader.Infrastructure.Services
             }
             catch (HttpRequestException ex)
             {
-                logger.LogError(ex, "HTTP request failed for {Uri}", requestUri);
+                logger.LogError(ex, "Failed to download from {Uri}", requestUri);
                 throw;
             }
             catch (TaskCanceledException ex) when (!cancellationToken.IsCancellationRequested)
             {
-                logger.LogError(ex, "Request timed out for {Uri}", requestUri);
+                logger.LogError(ex, "Timeout downloading from {Uri}", requestUri);
                 throw new TimeoutException("Request timed out.", ex);
-            }
-            catch (OperationCanceledException)
-            {
-                logger.LogDebug("Request canceled for {Uri}", requestUri);
-                throw;
             }
         }
     }

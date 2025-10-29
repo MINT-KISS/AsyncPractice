@@ -3,7 +3,7 @@ using AsyncDownloader.Domain.Models;
 
 namespace AsyncDownloader.Cli
 {
-    public class ConsoleApp(IPostService postService)
+    public class ConsoleApp(IPostService postService, ILogger<ConsoleApp> logger)
     {
         public async Task RunAsync(CancellationToken cancellationToken)
         {
@@ -13,35 +13,50 @@ namespace AsyncDownloader.Cli
                 var input = Console.ReadLine()?.Trim().ToLower();
 
                 if (input == "exit") break;
-                
-                if (input == "all")
+
+                try
                 {
-                    Console.WriteLine();
-                    var posts = await postService.GetPostsAsync(cancellationToken);
-                    Console.WriteLine();
-                    foreach (var p in posts)
+                    if (input == "all")
                     {
-                        if (p is not null) PrintPost(p);
+                        Console.WriteLine();
+                        var posts = await postService.GetPostsAsync(cancellationToken);
+                        Console.WriteLine();
+                        foreach (var p in posts)
+                        {
+                            if (p is not null) PrintPost(p);
+                        }
+                        continue;
                     }
-                    continue;
-                }
 
-                if (!int.TryParse(input, out var id) || id < 1 || id > 99)
+                    if (!int.TryParse(input, out var id) || id < 1 || id > 99)
+                    {
+                        Console.WriteLine("Invalid id.");
+                        continue;
+                    }
+
+                    Console.WriteLine();
+                    var post = await postService.GetPostByIdAsync(id, cancellationToken);
+                    Console.WriteLine();
+                    if (post is null)
+                    {
+                        Console.WriteLine("Not found.");
+                        continue;
+                    }
+
+                    PrintPost(post);
+                }
+                catch (TimeoutException)
                 {
-                    Console.WriteLine("Invalid id.");
-                    continue;
+                    Console.WriteLine("Request timed out. Please try again.");
                 }
-
-                Console.WriteLine();
-                var post = await postService.GetPostByIdAsync(id, cancellationToken);
-                Console.WriteLine();
-                if (post is null)
+                catch (HttpRequestException)
                 {
-                    Console.WriteLine("Not found.");
-                    continue;
+                    Console.WriteLine("Network error. Check your connection and try again.");
                 }
-
-                PrintPost(post);
+                catch (Exception)
+                {
+                    Console.WriteLine("An error occurred. Details are logged.");
+                }
             }
         }
 
