@@ -20,7 +20,6 @@ namespace AsyncDownloader.Cli
                     {
                         Console.WriteLine();
                         var posts = await postService.GetPostsAsync(cancellationToken);
-                        Console.WriteLine();
                         foreach (var p in posts)
                         {
                             if (p is not null) PrintPost(p);
@@ -36,7 +35,6 @@ namespace AsyncDownloader.Cli
 
                     Console.WriteLine();
                     var post = await postService.GetPostByIdAsync(id, cancellationToken);
-                    Console.WriteLine();
                     if (post is null)
                     {
                         Console.WriteLine("Not found.");
