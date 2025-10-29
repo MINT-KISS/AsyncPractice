@@ -1,12 +1,12 @@
-@host = https://localhost:7180
+@host = https://localhost:7048
 @base = https://jsonplaceholder.typicode.com
 @accept = application/json
 
 
 ### Get all posts
-GET {{base}}/posts
+GET {{host}}/posts
 Accept: {{accept}}
 
 ### Get post
-GET {{base}}/posts/3
+GET {{host}}/posts/3
 Accept: {{accept}}

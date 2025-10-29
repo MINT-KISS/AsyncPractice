@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AsyncDownloader.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("posts")]
     public class PostController(IPostService postService) : ControllerBase
     {
         [HttpGet]
@@ -26,7 +26,7 @@ namespace AsyncDownloader.Api.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult> Get(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult> Get(int id, CancellationToken cancellationToken = default)
         {
             try
             {
