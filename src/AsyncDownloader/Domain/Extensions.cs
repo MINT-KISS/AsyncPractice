@@ -2,6 +2,7 @@
 using AsyncDownloader.Application.Services;
 using AsyncDownloader.Cli;
 using AsyncDownloader.Infrastructure.Services;
+using System.Net;
 
 namespace AsyncDownloader.Domain
 {
@@ -11,22 +12,25 @@ namespace AsyncDownloader.Domain
         {
             serviceCollection.AddScoped<IPostService, PostService>();
             serviceCollection.AddScoped<IHttpDataDownloader, HttpDataDownloader>();
-            serviceCollection.AddHttpClient("ExternalApiClient", c => c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
+            serviceCollection.AddHttpClient("ExternalApiClient", c =>
+                c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"))
+                             .ConfigurePrimaryHttpMessageHandler(() =>
+                new SocketsHttpHandler { AutomaticDecompression = DecompressionMethods.All });
 
             return serviceCollection;
         }
 
-        public static IServiceCollection AddAppLogging(this IServiceCollection services)
+        public static IServiceCollection AddAppLogging(this IServiceCollection servicesCollection)
         {
-            services.AddLogging(logging =>
+            servicesCollection.AddLogging(logging =>
             {
                 logging.ClearProviders();
                 logging.AddDebug();
             });
 
-            return services;
+            return servicesCollection;
         }
-        
+
         public static IServiceCollection AddCli(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ConsoleApp>();

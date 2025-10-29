@@ -2,6 +2,6 @@
 {
     public interface IHttpDataDownloader
     {
-        Task<string> DownloadDataAsync(string endpoint, CancellationToken cancellationToken);
+        Task<string> DownloadDataAsync(string requestUri, CancellationToken cancellationToken);
     }
 }

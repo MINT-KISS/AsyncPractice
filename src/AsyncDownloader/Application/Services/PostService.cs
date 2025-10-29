@@ -9,7 +9,7 @@ namespace AsyncDownloader.Application.Services
         public async Task<IEnumerable<Post?>> GetPostsAsync(CancellationToken cancellationToken = default)
         {
             var json = await downloader.DownloadDataAsync("posts", cancellationToken);
-            return JsonSerializer.Deserialize<IEnumerable<Post>>(json) ?? Enumerable.Empty<Post>();
+            return JsonSerializer.Deserialize<IEnumerable<Post?>>(json) ?? [];
         }
 
         public async Task<Post?> GetPostByIdAsync(int id, CancellationToken cancellationToken = default)
